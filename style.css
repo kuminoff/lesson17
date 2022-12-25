@@ -4,8 +4,13 @@ table {
     border-collapse: collapse;
 }
 
+thead{
+     margin: 10px;
+}
+
 th {
     border: 1px solid grey;
+    padding: 3px 10px;
 }
 
 tr {
@@ -13,7 +18,7 @@ tr {
 }
 
 input {
-    margin: 10px;
+    margin: 20px;
 }
 
 input:first-child {

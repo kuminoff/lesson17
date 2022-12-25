@@ -1,10 +1,10 @@
 "use script";
 
-const inputName = document.getElementById("name");
-const inputAutor = document.getElementById("autor");
-const selectGenre = document.getElementById("genre");
+const inputModel = document.getElementById("model");
+const inputManufacturer = document.getElementById("manufacturer");
+const selectBody = document.getElementById("body");
 const inputYear = document.getElementById("year");
-const inputPages = document.getElementById("pages");
+const inputСolour = document.getElementById("colour");
 const inputCost = document.getElementById("cost");
 const inputAvail = document.getElementById("avail");
 const submitBtn = document.getElementById("sumbit-btn");
@@ -12,75 +12,75 @@ const table = document.getElementById("tab");
 const form = document.getElementById("form");
 const thead = document.getElementById("thead");
 const tbody = document.getElementById("tbody");
-const bookData =
-  JSON.parse(localStorage.getItem("bookData")) !== null
-    ? JSON.parse(localStorage.getItem("bookData"))
+const carData =
+  JSON.parse(localStorage.getItem("carData")) !== null
+    ? JSON.parse(localStorage.getItem("carData"))
     : [];
 
-class Book {
-  constructor(name, autor, year) {
-    this.name = name;
-    this.autor = autor;
+class Car {
+  constructor(model, manufacturer, year) {
+    this.model = model;
+    this.manufacturer = manufacturer;
     this.year = year;
   }
 }
 
-class Sience extends Book {
-  constructor(name, autor, year, pages, cost, avail) {
-    super(name, autor, year);
-    this.genre = "Научная фантастика";
-    this.pages = pages;
+class Liftback extends Car {
+  constructor(model, manufacturer, year, colour, cost, avail) {
+    super(model, manufacturer, year);
+    this.body = "лифтбек";
+    this.colour = colour;
     this.cost = cost;
     this.avail = avail;
   }
 }
 
-class Horror extends Book {
-  constructor(name, autor, year, pages, cost, avail) {
-    super(name, autor, year);
-    this.genre = "Ужасы";
-    this.pages = pages;
+class Convertible extends Car {
+  constructor(model, manufacturer, year, colour, cost, avail) {
+    super(model, manufacturer, year);
+    this.body = "кабриолет";
+    this.colour = colour;
     this.cost = cost;
     this.avail = avail;
   }
 }
 
-const saveBook = () => {
-  const newBook =
-    selectGenre.value === "sci"
-      ? new Sience(
-          inputName.value,
-          inputAutor.value,
+const saveCar = () => {
+  const newCar =
+    selectBody.value === "liftback"
+      ? new Liftback(
+          inputModel.value,
+          inputManufacturer.value,
           inputYear.value,
-          inputPages.value,
+          inputСolour.value,
           inputCost.value,
           inputAvail.value
         )
-      : new Horror(
-          inputName.value,
-          inputAutor.value,
+      : new Convertible(
+          inputModel.value,
+          inputManufacturer.value,
           inputYear.value,
-          inputPages.value,
+          inputСolour.value,
           inputCost.value,
           inputAvail.value
         );
-  bookData.push(newBook);
-  console.log(bookData);
-  localStorage.setItem("bookData", JSON.stringify(bookData));
+  carData.push(newCar);
+  console.log(carData);
+  localStorage.setItem("carData", JSON.stringify(carData));
   showTab();
 };
 
 const showTab = () => {
   tbody.innerHTML = "";
-  bookData.forEach(function (item, index) {
+  carData.forEach(function (item, index) {
     const remove = document.createElement("tr");
-    remove.innerHTML = `<button class="delete-btn">Удалить книгу</button>`;
+    remove.innerHTML = `<button class="delete-btn">Удалить машину</button>`;
     const tr = document.createElement("tr");
-    tr.innerHTML = `<th>${item.name}</th>
-            <th>${item.autor}</th>
-            <th>${item.genre}</th>
+    tr.innerHTML = `<th>${item.model}</th>
+            <th>${item.manufacturer}</th>
+            <th>${item.body}</th>
             <th>${item.year}</th>
-            <th>${item.pages}</th>
+            <th>${item.colour}</th>
             <th>${item.cost}</th>
             <th>${item.avail === "on" ? "Есть" : "Нет"}</th>
             <th>${remove.innerHTML}</th>`;
@@ -88,22 +88,22 @@ const showTab = () => {
     const deletBtn = document.querySelectorAll(".delete-btn");
     deletBtn[index].addEventListener("click", () => {
       tr.innerHTML = "";
-      bookData.splice(index, 1);
-      localStorage.setItem("bookData", JSON.stringify(bookData));
+      carData.splice(index, 1);
+      localStorage.setItem("carData", JSON.stringify(carData));
       showTab();
     });
-    inputName.value = "";
-    inputAutor.value = "";
-    selectGenre.childNodes[0].selected = true;
+    inputModel.value = "";
+    inputManufacturer.value = "";
+    selectBody.childNodes[0].selected = true;
     inputYear.value = "";
-    inputPages.value = "";
+    inputСolour.value = "";
     inputCost.value = "";
     inputAvail.value = "";
   });
 };
 
-if (bookData !== []) {
+if (carData !== []) {
   showTab();
 }
 
-form.addEventListener("submit", saveBook);
+form.addEventListener("submit", saveCar);
