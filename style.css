@@ -1,0 +1,25 @@
+table {
+    border: 1px solid grey;
+
+    border-collapse: collapse;
+}
+
+th {
+    border: 1px solid grey;
+}
+
+tr {
+    border: 1px solid grey;
+}
+
+input {
+    margin: 10px;
+}
+
+input:first-child {
+    margin-left: 0px;
+}
+
+#sumbit-btn {
+    margin-left: 10px;
+}

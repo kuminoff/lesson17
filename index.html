@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Заполните данные о книге, которую хотите добавить в таблицу</h1>
+    <form id="form" action="#">
+        <input id="name" type="text" placeholder="Введите название книги">
+        <input id="autor" type="text" placeholder="Введите автора книги">
+        <select name="genres" id="genre">
+            <option value="sci">Научная фантастика</option>
+            <option value="hor">Ужасы</option>
+        </select>
+        <input id="year" type="text" placeholder="Введите год написания">
+        <input id="pages" type="text" placeholder="Введите кол-во страниц">
+        <input id="cost" type="text" placeholder="Введите стоимость книги">
+        <input id="avail" type="checkbox">
+        <label for="avail">Наличие в магазине</label>
+        <button id="sumbit-btn" type="submit">Сохранить</button>
+    </form>
+    <table id="tab">
+        <thead id="thead">
+            <caption>Перечень книг</caption>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Жанр</th>
+            <th>Год написания</th>
+            <th>Количество страниц</th>
+            <th>Стоимость</th>
+            <th>Наличие в магазине</th>
+            <th>Удаление</th>
+
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+
+</html>
